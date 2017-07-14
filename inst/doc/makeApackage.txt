@@ -1,0 +1,125 @@
+https://cran.r-project.org/doc/manuals/r-release/R-exts.html
+
+#
+# create package
+#
+
+library(devtools)
+create("myFirstPackage")
+install("myFirstPackage")
+library("myFirstPackage")
+library(help="myFirstPackage")
+
+# make it a project 
+File > NewProject
+
+# go through default structure that gets set up
+
+#
+# version control set up (https://www.r-bloggers.com/rstudio-and-github/)
+#
+
+#Can only version control projects. 
+Tools > VersionControl > Project Setup
+Choose Git and follow instructions
+Can see new tab Git 
+
+# could stop here but linking to github too/assuming you have a github account
+Tools > Global Options Git/SVN 
+ensure the paths are correct
+Create RSA key 
+Close window
+Click, View public key, and copy the displayed public key
+
+Go to Github account
+Account settings and click SSH key tab. Add SSH key copied from Rstudio
+Create new repository with same name as package 
+
+Back in Rstudio
+Tools > Shell
+git config --global user.email "shepherl@gmail.com"
+git config --global user.name "lshep"
+
+# version control files (showing different of commits/push/pulls)
+Tools > Shell
+git remote add origin https://github.com/lshep/myFirstPackage.git
+git config remote.origin.url git@github.com:lshep/myFirstPackage.git
+git pull -u origin master
+git push -u origin master
+
+# update DESCRIPTION
+
+# Write a R function
+load_all()
+add export with roxygen documentation
+check()
+# add more documentation with roxygen
+document()
+build > clean and rebuild
+build > build and reload
+
+# some examples/test
+https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
+use_testthat()
+test_hello.R
+
+context("hello-script")
+
+test_that("hi function works", {
+    expect_identical
+    expect_true
+    expect_error
+    expect_is
+ }
+
+
+# package documentation
+use_package_doc()
+
+
+# vignette
+use_vignette("myFirstpackage")
+---
+title: "BiocFileCache: Managing File Resources Across Sessions"
+author: Lori Shepherd
+output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2
+vignette: >
+    %\VignetteEngine{knitr::rmarkdown}
+    %\VignetteIndexEntry{BiocFileCache: Managing File Resources Across Sessions}
+    %\VignetteEncoding{UTF-8}
+    %\VignetteDepends{rtracklayer}
+---
+
+
+# mention import and importFrom - updates NAMESPACE but not DESCRPITION
+
+
+
+http://stat545.com/packages06_foofactors-package.html
+
+
+
+Bioconductor Expectations 
+1. proper coding and efficient coding:
+http://bioconductor.org/developers/how-to/efficient-code/ 
+http://bioconductor.org/developers/how-to/web-query/
+2. Bioconductor connection - reuse existing classes and structure - link to others
+3. Tests 
+http://bioconductor.org/developers/how-to/unitTesting-guidelines/
+4. complete Vignettes and man pages
+5. check time < 5min 
+6. package size < 4Mb
+http://bioconductor.org/developers/package-guidelines/
+
+Even all of this is no guarantee 
+
+Submitting: 
+https://github.com/Bioconductor/Contributions
+Issues
+New issue
+Title: nameOfPackage
+set up your webhook: 
+https://github.com/Bioconductor/Contributions/blob/master/CONTRIBUTING.md#adding-a-web-hook
