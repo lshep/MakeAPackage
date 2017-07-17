@@ -44,19 +44,33 @@ git config --global user.name "lshep"
 Tools > Shell
 git remote add origin https://github.com/lshep/myFirstPackage.git
 git config remote.origin.url git@github.com:lshep/myFirstPackage.git
-git pull -u origin master
-git push -u origin master
+git pull -u origin master 
+git push -u origin master  
 
 # update DESCRIPTION
 
 # Write a R function
+greet <- function(name){
+      print(paste("Hello", name))
+}
+
 load_all()
+check()
+reload - no function
+
 add export with roxygen documentation
+@export
+
 check()
 # add more documentation with roxygen
+@alias, @title, @description, @rdname, @param, @return, @examples 
+
 document()
 build > clean and rebuild
 build > build and reload
+
+# package documentation
+use_package_doc()
 
 # some examples/test
 https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf
@@ -71,13 +85,15 @@ test_that("hi function works", {
     expect_error
     expect_is
  }
+test_Rfile
 
-
-# package documentation
-use_package_doc()
 
 
 # vignette
+Rmarkdown -> from template
+
+or
+
 use_vignette("myFirstpackage")
 ---
 title: "BiocFileCache: Managing File Resources Across Sessions"
@@ -94,6 +110,8 @@ vignette: >
 ---
 
 
+
+
 # mention import and importFrom - updates NAMESPACE but not DESCRPITION
 
 
@@ -106,7 +124,19 @@ Bioconductor Expectations
 1. proper coding and efficient coding:
 http://bioconductor.org/developers/how-to/efficient-code/ 
 http://bioconductor.org/developers/how-to/web-query/
-2. Bioconductor connection - reuse existing classes and structure - link to others
+
+
+2.  Bioconductor interconnectivity and S4 classes
+ * S4 over S3 classes BUT reuse existing infastructure first! 
+     + DNA/RNA -  Biostrings DNAstringset
+     + genomic intervals - GenomicRanges Granges
+     + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
+     + Mass Spec - MSnbase
+     + import/loading data  -  rtracklayer, GenomicAlignments, VariantAnnotation, ShortRead
+     + [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
+
+
+
 3. Tests 
 http://bioconductor.org/developers/how-to/unitTesting-guidelines/
 4. complete Vignettes and man pages

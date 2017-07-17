@@ -146,6 +146,11 @@ output:
     toc: true
     toc_depth: 2
 ```
+
+Or if BiocStyle is already installed on your system, you can also use Rstudio:
+New File -> Rmarkdown -> create from template
+
+
 A helpful rmarkdown link, which is commonly used for vignette creation can be found 
 here: [rmarkdown cheetsheet](http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf)
 
@@ -155,10 +160,22 @@ here: [rmarkdown cheetsheet](http://www.rstudio.com/wp-content/uploads/2016/03/r
 
  * [Efficient and Robust Code](http://bioconductor.org/developers/how-to/efficient-code/) 
  * [Query Web Resource](http://bioconductor.org/developers/how-to/web-query/)
-2. Bioconductor connection - reuse existing classes and structure - link to other packages
- * [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software)
+ 
+ 
+2. Bioconductor interconnectivity and S4 classes
+ * S4 over S3 classes BUT reuse existing infastructure first! 
+     + DNA/RNA -  Biostrings DNAstringset
+     + genomic intervals - GenomicRanges Granges
+     + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
+     + Mass Spec - MSnbase
+     + import/loading data  -  rtracklayer, GenomicAlignments, VariantAnnotation, ShortRead
+     + [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
+
+
 3. Tests 
  * [unitTest guidelines](http://bioconductor.org/developers/how-to/unitTesting-guidelines/)
+ 
+ 
 4. complete and detailed Vignettes and man pages with executable examples
 5. check time < 5min 
 6. package size < 4Mb

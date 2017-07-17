@@ -10,7 +10,7 @@
 
 <meta name="author" content="Lori Shepherd" />
 
-<meta name="date" content="2017-07-14" />
+<meta name="date" content="2017-07-17" />
 
 <title>Make A Package</title>
 
@@ -51,43 +51,118 @@ document.addEventListener("DOMContentLoaded", function() {
 <div id="header">
 <h1 class="title">Make A Package</h1>
 <h4 class="author"><em>Lori Shepherd</em></h4>
-<h4 class="date"><em>2017-07-14</em></h4>
+<h4 class="date"><em>2017-07-17</em></h4>
 </div>
 
 <h1>Contents</h1>
 <div id="TOC">
 <ul>
-<li><a href="#using-devtools-to-create-a-package"><span class="toc-section-number">0.1</span> Using <code>devtools</code> to create a package</a></li>
-<li><a href="#collection-of-useful-links"><span class="toc-section-number">0.2</span> Collection of Useful Links</a></li>
+<li><a href="#make-a-package"><span class="toc-section-number">1</span> Make A Package</a><ul>
+<li><a href="#using-devtools-to-create-a-package"><span class="toc-section-number">1.1</span> Using <code>devtools</code> to create a package</a></li>
+<li><a href="#bioconductor-standards"><span class="toc-section-number">1.2</span> Bioconductor Standards</a></li>
+</ul></li>
 </ul>
 </div>
 
+<div id="make-a-package" class="section level1">
+<h1><span class="header-section-number">1</span> Make A Package</h1>
 <p>A package is a collection of functions that work together in a cohesive manner to achieve a goal. It (should) include detailed documentation through man pages and vignettes and (should) be tested for accuracy and efficiency.</p>
 <p><a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions</a> is a very detailed manual to writing packages and what the structure of a package entails.</p>
 <div id="using-devtools-to-create-a-package" class="section level2">
-<h2><span class="header-section-number">0.1</span> Using <code>devtools</code> to create a package</h2>
+<h2><span class="header-section-number">1.1</span> Using <code>devtools</code> to create a package</h2>
 <p>The <code>devtools</code> package provides a lot of options and utility for helping to construct a new package. You can get a list of all available devtools functions with <code>ls(&quot;package:devtools&quot;)</code>.</p>
 <p>Some useful references for using devtools to build packages are <a href="https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf">Rstudio Devtools Cheetsheet</a> and <a href="http://stat545.com/packages06_foofactors-package.html">Jennifer Bryan class</a></p>
 <div id="set-up-shell-of-a-package" class="section level3">
-<h3><span class="header-section-number">0.1.1</span> set up shell of a package</h3>
+<h3><span class="header-section-number">1.1.1</span> set up shell of a package</h3>
 <pre class="r"><code>library(devtools)
 create(&quot;myFirstPackage&quot;)</code></pre>
 <p>Create will instantiate all the necessary files and sub-directories that are required by R to be a valid package: DESCRIPTION, NAMESPACE, and R directory. You will have to edit the DESCRIPTION to insert the information pertinent to your package.</p>
 <p>After running create, the package has a valid package structure and can installed and loaded: <code>install(&quot;myFirstPackage&quot;)</code>, <code>library(&quot;myFirstPackage&quot;)</code>, <code>library(help=&quot;myFirstPackage&quot;)</code>.</p>
 </div>
 <div id="version-control" class="section level3">
-<h3><span class="header-section-number">0.1.2</span> version control</h3>
+<h3><span class="header-section-number">1.1.2</span> version control</h3>
 <p>It is an excellent idea to version control whenever creating a package and especially when collaborating on a project, where multiple users are allowed to make changes. It allows for a constant record of changes that can be advanced or reverted if necessary.</p>
-<p>Only a project can be version controlled, to make a directory a project in Rstudio go to: <code>File -&gt; New Project</code> . In this case we started creating the directory so we follow the prompts for the option <code>Use Existing Directory</code>.</p>
+<p>Only a project can be version controlled, to make a directory a project in Rstudio go to: <code>File -&gt; New Project</code> . In this case we started creating the directory so we follow the prompts for the option <code>Use Existing Directory</code>. Now that it is a project we can go to <code>Tools -&gt; Version Control -&gt; Project Setup</code> Change the <code>Version Control System</code> to <code>Git</code> and follow the prompts. Notice in the Rstudio pane for environments/history/build there is a new tab Git. The package now can start using <code>git</code> version control by making commits. To make a commit, you can go to the Git tab, select the check box next to any files that have been modified, added, or deleted that you would like to track, and select <code>commit</code>. Enter a new commit message in the window that pops up and select <code>commit</code>.</p>
+<p>We coud stop here but we also would like put the package on GitHub. (This assumes you have a github account). First, in Rstudio go to <code>Tools -&gt; Global Options</code> and select Git/SVN. Ensure the paths are correct. If you have not linked a Rstudio project to Github, select <code>Create RSA key</code>. Close the window. Click on <code>View public key</code> and copy the displayed public key. Now in a web browser, open your GitHub account. Go to <code>Settings</code> and <code>SSH and GPG keys</code>. Click on the option for <code>New SSH key</code> and paste the public key that was copied. Also on GitHub, create a new repository with the same name as the one you created in Rstudio using <code>create()</code>. Back in Rstudio, select <code>Tools -&gt; Shell</code> and type the following subsituting your github user.name and the package name.</p>
+<pre><code>git remote add origin https://github.com/&lt;github user.name&gt;/&lt;package repo name&gt;.git
+git config remote.origin.url git@github.com:&lt;github user.name&gt;/&lt;package repo name&gt;.git
+git pull -u origin master
+git push -u origin master</code></pre>
+<p>For instance, my package repository on github is “myFirstPackage” and my git hub user.name is lshep:</p>
+<pre><code>https://github.com/lshep/myFirstPackage.git
+git@github.com:lshep/myFirstPackage.git</code></pre>
+<p>Now if you look in the Rstudio tab for Git, the push and pull options are available. You can now push and pull from/to the local version of your package and the GitHub repository version of the package.</p>
+</div>
+<div id="back-to-making-a-valid-package" class="section level3">
+<h3><span class="header-section-number">1.1.3</span> Back to making a valid package</h3>
+<p><code>devtools</code> proviodes built in functions for building, checking, and installing a package. The package we created using <code>create</code> has a valid package structure but if we did <code>check</code> we will find the DESCRIPTION needs updating. Update the DESCRIPTION file to be appropriate for your package; throughout the development of your package you might have to update the DESCRIPTION for appropraite Depends, Imports, and Suggest fields.</p>
+<p>Now we want to start writing R functions. In Rstudio you can open an empty file by <code>File -&gt; New File</code> and selecting <code>R Script</code>. Save the file in the R directory. Write your functions and document. You can either document functions manually or if you use roxygen you can use the devtools function <code>document()</code>. See the <a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions</a> for manual creation of Rd files (located in the man directory) but roxygen is growing increating popular. Some helpful links for roxygen tags can be found <a href="https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf">Rstudio Devtools Cheetsheet</a> and <a href="https://cran.rstudio.com/web/packages/roxygen2/vignettes/rd.html">Roxygen Help</a>.</p>
+<p>Some useful devtools commands while creating functions:</p>
+<ul>
+<li><code>load_all()</code> loads all package functions in environment to test</li>
+<li><code>check()</code> checks the package (R CMD check)</li>
+<li><code>document()</code> generates or updates andy documentation files</li>
+</ul>
+<p>and using the Rstudio options <code>Build -&gt; Build And Reload</code> and <code>Build -&gt; Clean and Rebuild</code>.</p>
+<p>It is also recommended to have a man page for your package. devtools provides framework for this and creates the file that needs to be modified by calling <code>use_package_doc()</code>.</p>
+<p>If you import any functions in your code, don’t forget to update the DESCRIPTION file for Depends, Imports, or Suggests.</p>
+</div>
+<div id="testing" class="section level3">
+<h3><span class="header-section-number">1.1.4</span> Testing</h3>
+<p>It is highly recommended to add unit tests to your package. Unit test ensure the package is working as expect. The two main ways to test are using <code>RUnit</code> or <code>testthat</code>. testthat functionality is included in devtools. Using <code>use_testthat()</code> will set up the needed directory structure and add the package suggestion to the DESCRIPTION. Here are some examples of the structure of tests for testthat: <code>expect_identical</code>, <code>expect_true</code>, <code>expect_error</code>. There are other options as well that are discussed in <a href="https://journal.r-project.org/archive/2011-1/RJournal_2011-1_Wickham.pdf">testthat Wickham</a> and <a href="http://r-pkgs.had.co.nz/tests.html">testthat</a>.</p>
+</div>
+<div id="vignettes" class="section level3">
+<h3><span class="header-section-number">1.1.5</span> Vignettes</h3>
+<p>Vignettes are another major documentation piece to a package and more and more repository systems (CRAN, Bioconductor, ROpenSci) and making vignettes a standard requirement. They are a more indepth description and examples of package usage. devtools also provides the function <code>use_vignette()</code> to set up the directory structure and initial file for creating a vignette. For Bioconductor submissions we recommend changing the <code>output:</code> section of the vignette header to the following (this would require adding BiocStyle to the Suggest field in the DESCRIPTION):</p>
+<pre><code>output:
+  BiocStyle::html_document:
+    toc: true
+    toc_depth: 2</code></pre>
+<p>Or if BiocStyle is already installed on your system, you can also use Rstudio: New File -&gt; Rmarkdown -&gt; create from template</p>
+<p>A helpful rmarkdown link, which is commonly used for vignette creation can be found here: <a href="http://www.rstudio.com/wp-content/uploads/2016/03/rmarkdown-cheatsheet-2.0.pdf">rmarkdown cheetsheet</a></p>
 </div>
 </div>
-<div id="collection-of-useful-links" class="section level2">
-<h2><span class="header-section-number">0.2</span> Collection of Useful Links</h2>
+<div id="bioconductor-standards" class="section level2">
+<h2><span class="header-section-number">1.2</span> Bioconductor Standards</h2>
 <ol style="list-style-type: decimal">
-<li><a href="https://cran.r-project.org/doc/manuals/r-release/R-exts.html">Writing R extensions</a></li>
-<li><a href="https://www.rstudio.com/wp-content/uploads/2015/03/devtools-cheatsheet.pdf">Rstudio Devtools Cheetsheet</a></li>
-<li><a href="http://stat545.com/packages06_foofactors-package.html">Jennifer Bryan class</a></li>
+<li>proper coding and efficient coding:</li>
 </ol>
+<ul>
+<li><a href="http://bioconductor.org/developers/how-to/efficient-code/">Efficient and Robust Code</a></li>
+<li><a href="http://bioconductor.org/developers/how-to/web-query/">Query Web Resource</a></li>
+</ul>
+<ol start="2" style="list-style-type: decimal">
+<li>Bioconductor interconnectivity and S4 classes</li>
+</ol>
+<ul>
+<li>S4 over S3 classes BUT reuse existing infastructure first!
+<ul>
+<li>DNA/RNA - Biostrings DNAstringset</li>
+<li>genomic intervals - GenomicRanges Granges</li>
+<li>rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment</li>
+<li>Mass Spec - MSnbase</li>
+<li>import/loading data - rtracklayer, GenomicAlignments, VariantAnnotation, ShortRead</li>
+<li><a href="http://bioconductor.org/packages/release/BiocViews.html#___Software">BiocViews</a></li>
+</ul></li>
+</ul>
+<ol start="3" style="list-style-type: decimal">
+<li>Tests</li>
+</ol>
+<ul>
+<li><a href="http://bioconductor.org/developers/how-to/unitTesting-guidelines/">unitTest guidelines</a></li>
+</ul>
+<ol start="4" style="list-style-type: decimal">
+<li>complete and detailed Vignettes and man pages with executable examples</li>
+<li>check time &lt; 5min</li>
+<li>package size &lt; 4Mb</li>
+<li>All package guidelines can be found <a href="http://bioconductor.org/developers/package-guidelines/">here</a></li>
+</ol>
+<p>A clean build and check and BiocCheck is not a guarantee to acceptance. It will go through a formal view process.</p>
+<div id="submitting-to-bioconductor" class="section level3">
+<h3><span class="header-section-number">1.2.1</span> Submitting to Bioconductor</h3>
+<p>Read the <a href="https://github.com/Bioconductor/Contributions">Contributions Page</a> and when ready to submit open a <a href="https://github.com/Bioconductor/Contributions/issues">New Issue</a>. The Title: should be the name of your package. Once the package is approved for building, don’t forget to set up the <a href="https://github.com/Bioconductor/Contributions/blob/master/CONTRIBUTING.md#adding-a-web-hook">webhook</a></p>
+</div>
+</div>
 </div>
 
 
