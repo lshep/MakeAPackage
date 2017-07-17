@@ -148,7 +148,7 @@ output:
 ```
 
 Or if BiocStyle is already installed on your system, you can also use Rstudio:
-New File -> Rmarkdown -> create from template
+`New File -> Rmarkdown -> From Template -> Bioconductor HTML/PDF Vignette`
 
 
 A helpful rmarkdown link, which is commonly used for vignette creation can be found 
