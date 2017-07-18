@@ -168,7 +168,7 @@ here: [rmarkdown cheetsheet](http://www.rstudio.com/wp-content/uploads/2016/03/r
      + genomic intervals - GenomicRanges Granges
      + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
      + Mass Spec - MSnbase
-     + import/loading data  -  rtracklayer, GenomicAlignments, VariantAnnotation, ShortRead
+     + import/loading data  -  rtracklayer, Biostring, GenomicAlignments, VariantAnnotation, ShortRead
      + [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
 
 

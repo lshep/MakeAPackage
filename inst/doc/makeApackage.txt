@@ -123,6 +123,9 @@ http://stat545.com/packages06_foofactors-package.html
 Bioconductor Expectations 
 1. proper coding and efficient coding:
 http://bioconductor.org/developers/how-to/efficient-code/ 
+  + preallocate vectors
+  + vectorize
+  + use seq_len and seq_along instead of 1:n 1:length(n)
 http://bioconductor.org/developers/how-to/web-query/
 
 
@@ -132,7 +135,14 @@ http://bioconductor.org/developers/how-to/web-query/
      + genomic intervals - GenomicRanges Granges
      + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
      + Mass Spec - MSnbase
-     + import/loading data  -  rtracklayer, GenomicAlignments, VariantAnnotation, ShortRead
+     + import/loading data  -  rtracklayer, GenomicAlignments,
+     VariantAnnotation, ShortRead
+
+     + GTF, GFF, BED, BigWig, ...	rtracklayer::import()
+     + FASTA	Biostrings::readDNAStringSet()
+     + SAM / BAM	Rsamtools::scanBam(), GenomicAlignments::readGAlignment*()
+     + VCF	VariantAnnotation::readVcf()
+     + FASTQ	ShortRead::readFastq()
      + [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
 
 
