@@ -5,7 +5,7 @@ Authors@R: person("Lori", "Shepherd", email = "lori.shepherd@roswellpark.org", r
 Description: The vignette provided will have a basic sketch of the steps we
     interactively went through to build a package with devtools, version control
     with git, link to github, bioconductor advice, and submitting to bioconductor.
-Depends: R (>= 3.4.1), devtools
+Depends: R (>= 3.4.0), devtools
 License: Artistic-2.0
 Encoding: UTF-8
 LazyData: true
