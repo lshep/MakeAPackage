@@ -132,6 +132,7 @@ http://bioconductor.org/developers/how-to/web-query/
 2.  Bioconductor interconnectivity and S4 classes
  * S4 over S3 classes BUT reuse existing infastructure first! 
      + DNA/RNA -  Biostrings DNAstringset
+     + GSEABase genesets
      + genomic intervals - GenomicRanges Granges
      + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
      + Mass Spec - MSnbase
