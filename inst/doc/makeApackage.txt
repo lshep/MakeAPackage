@@ -129,22 +129,23 @@ http://bioconductor.org/developers/how-to/efficient-code/
 http://bioconductor.org/developers/how-to/web-query/
 
 
-2.  Bioconductor interconnectivity and S4 classes
- * S4 over S3 classes BUT reuse existing infastructure first! 
+2. Bioconductor interconnectivity and S4 classes
+ * S4 over S3 classes 
+ * reuse existing infastructure first! 
      + DNA/RNA -  Biostrings DNAstringset
-     + GSEABase genesets
+     + gene sets - GSEABase GeneSet 
      + genomic intervals - GenomicRanges Granges
      + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
      + Mass Spec - MSnbase
-     + import/loading data  -  rtracklayer, GenomicAlignments,
-     VariantAnnotation, ShortRead
+     + import/loading data  
+       -  GTF, GFF, BED, BigWig, ...	rtracklayer::import()
+       -  FASTA	Biostrings::readDNAStringSet()
+       -  SAM / BAM	Rsamtools::scanBam(), GenomicAlignments::readGAlignment*()
+       -  VCF	VariantAnnotation::readVcf()
+       -  FASTQ	ShortRead::readFastq()
 
-     + GTF, GFF, BED, BigWig, ...	rtracklayer::import()
-     + FASTA	Biostrings::readDNAStringSet()
-     + SAM / BAM	Rsamtools::scanBam(), GenomicAlignments::readGAlignment*()
-     + VCF	VariantAnnotation::readVcf()
-     + FASTQ	ShortRead::readFastq()
-     + [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
+  * [BiocViews](http://bioconductor.org/packages/release/BiocViews.html#___Software) 
+
 
 
 
