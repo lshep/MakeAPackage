@@ -135,7 +135,9 @@ http://bioconductor.org/developers/how-to/web-query/
      + DNA/RNA -  Biostrings DNAstringset
      + gene sets - GSEABase GeneSet 
      + genomic intervals - GenomicRanges Granges
-     + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
+     + rectangular freature x sample data - (RNAseq count matrix, microarray) -
+     SummarizedExperiment
+     + Single Cell - SingleCellExperiement
      + Mass Spec - MSnbase
      + import/loading data  
        -  GTF, GFF, BED, BigWig, ...	rtracklayer::import()
