@@ -61,7 +61,15 @@ pane for environments/history/build there is a new tab Git. The package now can
 start using `git` version control by making commits. To make a commit, you can go 
 to the Git tab, select the check box next to any files that have been modified, 
 added, or deleted that you would like to track, and select `commit`. Enter a new
-commit message in the window that pops up and select `commit`. 
+commit message in the window that pops up and select `commit`. We should tell Git
+who we are. In Rstudio, select `Tools -> Shell` and type the following subsituting 
+your user.email and the user.name (if you have github we recommend using your email
+and user.name associated with github here).
+
+```
+git config --global user.email "<someemail@gmail.com>"
+git config --global user.name "<githubUserName>"
+```
 
 We coud stop here but we also would like put the package on GitHub. (This
 assumes you have a github account).  First, in Rstudio go to 
@@ -76,7 +84,7 @@ following subsituting your github user.name and the package name.
 ```
 git remote add origin https://github.com/<github user.name>/<package repo name>.git
 git config remote.origin.url git@github.com:<github user.name>/<package repo name>.git
-git pull -u origin master
+git pull origin master
 git push -u origin master
 ```
 For instance, my package repository on github is "myFirstPackage" and my git hub
