@@ -168,7 +168,8 @@ here: [rmarkdown cheetsheet](http://www.rstudio.com/wp-content/uploads/2016/03/r
      + DNA/RNA -  Biostrings DNAstringset
      + gene sets - GSEABase GeneSet 
      + genomic intervals - GenomicRanges Granges
-     + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment
+     + rectangular freature x sample data - (RNAseq count matrix, microarray) - SummarizedExperiment/MultiAssayExperiment
+     + Single cell - SingleCellExperiment
      + Mass Spec - MSnbase
      + import/loading data  
        -  GTF, GFF, BED, BigWig, ...	rtracklayer::import()
